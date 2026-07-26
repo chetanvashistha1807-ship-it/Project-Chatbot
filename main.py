@@ -46,13 +46,36 @@ def current_weather(latitude: float, longitude: float) -> str:
     wind_speed = current["wind_speed_10m"]
 
     return (
-    f"Current Weather\n"
-    f"Latitude: {latitude}\n"
-    f"Longitude: {longitude}\n"
-    f"Temperature: {temperature}°C\n"
-    f"Humidity: {humidity}%\n"
-    f"Wind Speed: {wind_speed} km/h"
-     )
+        f"Current Weather\n"
+        f"Latitude: {latitude}\n"
+        f"Longitude: {longitude}\n"
+        f"Temperature: {temperature}°C\n"
+        f"Humidity: {humidity}%\n"
+        f"Wind Speed: {wind_speed} km/h"
+    )
+
+
+@tool
+def translator(text: str, langpair: str) -> str:
+    """Use this for translating.
+         
+         Translate text from one language to another.
+
+         Use this tool whenever the user asks to:
+         - translate text
+         - convert one language to another
+         - translate a sentence """
+    
+    url = f"https://api.mymemory.translated.net/get?q={text}&langpair={langpair}"
+
+    response = requests.get(url)
+    
+
+    if response.status_code != 200:
+        return "Unable to translate."
+    
+    data = response.json()
+    return data.get("responseData", {}).get("translatedText", "Unable to translate.")
 
 
 @tool
@@ -70,7 +93,7 @@ def weather_history(latitude: float, longitude: float) -> str:
     start_date = week_ago.strftime("%Y-%m-%d")
     end_date = today.strftime("%Y-%m-%d")
 
-    # Get Jaipur weather for past week
+    # Get weather for past week
     url = (
         f"https://api.open-meteo.com/v1/forecast"
         f"?latitude={latitude}"
@@ -136,7 +159,7 @@ def calculator(a: float, b: float) -> str:
 
     This tool can add two numbers together.
     """
-    print("The tool has been called")
+    
     return f"The sum of {a} and {b} is {a + b}"
 
 
@@ -148,7 +171,7 @@ def main():
         api_key=os.getenv("OPENROUTER_API_KEY"),
     )
 
-    tools = [calculator, current_weather, weather_history]
+    tools = [calculator, current_weather, weather_history, translator]
 
     agent_executor = create_agent(model, tools)
 
