@@ -15,7 +15,39 @@ import requests
 
 load_dotenv()
 
+@tool
+def currency_converter(amount:float, to_currency:str, from_currency:str) -> str:
+    """Convert the given currency from one form to another.  
+       Convert money from one currency to another.
 
+        Use this tool whenever the user asks to:
+        - convert currencies
+        - exchange money
+        - convert USD to INR
+        - convert euros to pounds
+
+    
+    """
+    
+    url = (
+    f"https://api.frankfurter.app/latest"
+    f"?amount={amount}"
+    f"&from={from_currency.upper()}"
+    f"&to={to_currency.upper()}")
+    response = requests.get(url)
+    if response.status_code != 200:
+        return "Unable to convert currency."
+
+    data = response.json()
+    converted_amount = data["rates"][to_currency.upper()]
+    return (
+        f"{amount} {from_currency.upper()} = "
+        f"{converted_amount} {to_currency.upper()}"
+    )
+
+
+     
+    
 @tool
 def current_weather(latitude: float, longitude: float) -> str:
     """Get the current weather for given latitude and longitude.
@@ -171,7 +203,7 @@ def main():
         api_key=os.getenv("OPENROUTER_API_KEY"),
     )
 
-    tools = [calculator, current_weather, weather_history, translator]
+    tools = [calculator, current_weather, weather_history, translator, currency_converter]
 
     agent_executor = create_agent(model, tools)
 
