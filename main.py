@@ -7,13 +7,26 @@ from langchain_core.messages import HumanMessage
 from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI
 import matplotlib
+
+
 matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
 import pandas as pd
 import requests
+from langchain_community.tools import WikipediaQueryRun
+from langchain_community.utilities import WikipediaAPIWrapper
+
+
+
+wiki = WikipediaQueryRun(
+    api_wrapper=WikipediaAPIWrapper()
+)
 
 load_dotenv()
+
+
+
 
 @tool
 def currency_converter(amount:float, to_currency:str, from_currency:str) -> str:
@@ -203,7 +216,7 @@ def main():
         api_key=os.getenv("OPENROUTER_API_KEY"),
     )
 
-    tools = [calculator, current_weather, weather_history, translator, currency_converter]
+    tools = [calculator, current_weather, weather_history, translator, currency_converter, ]
 
     agent_executor = create_agent(model, tools)
 
