@@ -14,18 +14,29 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import pandas as pd
 import requests
-from langchain_community.tools import WikipediaQueryRun
-from langchain_community.utilities import WikipediaAPIWrapper
 
 
 
-wiki = WikipediaQueryRun(
-    api_wrapper=WikipediaAPIWrapper()
-)
+
 
 load_dotenv()
 
 
+
+@tool
+def wikipedia_search(query: str) -> str:
+    """Search Wikipedia for information."""
+
+    url = f"https://en.wikipedia.org/api/rest_v1/page/summary/{query.replace(' ', '_')}"
+
+    response = requests.get(url)
+
+    if response.status_code != 200:
+        return "No Wikipedia article found."
+
+    data = response.json()
+
+    return data.get("extract", "No summary available.")
 
 
 @tool
@@ -221,6 +232,7 @@ def create_chatbot():
         weather_history,
         translator,
         currency_converter,
+        wikipedia_search,
     ]
 
     return create_agent(model, tools)
