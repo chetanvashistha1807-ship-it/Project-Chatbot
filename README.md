@@ -1,119 +1,235 @@
 # 🤖 AI Chatbot with LangChain & OpenRouter
 
-A simple AI chatbot built using **Python**, **LangChain**, and **OpenRouter**. This project demonstrates how to create an AI agent capable of engaging in conversations using Large Language Models (LLMs).
+An AI-powered command-line chatbot built using **Python**, **LangChain**, and **OpenRouter**. The chatbot can answer general questions using an LLM while intelligently invoking external tools for weather, currency conversion, translation, calculations, and historical weather analysis.
 
-## 🚀 Features
+## ✨ Features
 
-- Interactive command-line chatbot
-- Built using LangChain's Agent framework
-- Uses OpenRouter as the LLM provider
-- Secure API key management with `.env`
-- Easily extensible with custom tools
-- Clean and beginner-friendly project structure
+- 🧠 Conversational AI using OpenRouter
+- 🌤️ Current weather lookup
+- 📊 7-day weather history with graph generation
+- 💱 Currency conversion
+- 🌍 Language translation
+- ➕ Calculator tool
+- 📁 Automatically saves weather data as CSV
+- 📈 Generates weather history charts
 
-## 🛠️ Tech Stack
+---
 
-- Python 3.12
+## 🛠️ Technologies Used
+
+- Python
 - LangChain
-- LangChain OpenAI
 - OpenRouter API
-- Python Dotenv
+- Open-Meteo API
+- Frankfurter Currency API
+- MyMemory Translation API
+- Pandas
+- Matplotlib
+- Requests
+- python-dotenv
+
+---
 
 ## 📂 Project Structure
 
 ```
-Project Chatbot/
-│── .venv/
-│── .env
-│── main.py
-│── requirements.txt
+Project-Chatbot/
+│
+├── data/
+│   └── Jaipur_weather.csv
+│
+├── weather_chart.png
+├── main.py
+├── .env
+├── requirements.txt
 └── README.md
 ```
+
+---
 
 ## ⚙️ Installation
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/chetanvashistha1807-ship-it/project-chatbot.git
-cd project-chatbot
+git clone https://github.com/your-username/Project-Chatbot.git
+cd Project-Chatbot
 ```
 
 ### 2. Create a virtual environment
 
-```bash
-python -m venv .venv
-```
-
-### 3. Activate the virtual environment
-
 **Windows**
 
 ```bash
+python -m venv .venv
 .venv\Scripts\activate
 ```
 
-**macOS/Linux**
+**Linux / macOS**
 
 ```bash
+python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-### 4. Install dependencies
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 🔑 Environment Variables
-
-Create a `.env` file in the project root and add your OpenRouter API key.
+### 4. Create a `.env` file
 
 ```env
 OPENROUTER_API_KEY=your_api_key_here
 ```
 
-## ▶️ Run the Project
+---
+
+## ▶️ Run the chatbot
 
 ```bash
 python main.py
 ```
 
+---
+
+# 🧰 Available Tools
+
+## 🌤️ Current Weather
+
+Get the current weather using latitude and longitude.
+
 Example:
 
 ```
-Welcome! I'm your AI assistant. Type 'quit' to exit
-
-You: Hello!
-
-Assistant:
-Hi there! How can I help you today?
+What's the weather at latitude 26.91 and longitude 75.78?
 ```
 
-## 📦 Dependencies
+Returns:
 
-- langchain
-- langchain-core
-- langchain-openai
-- python-dotenv
+- Temperature
+- Humidity
+- Wind Speed
 
-## 📈 Future Improvements
+---
 
-- Add custom tools (calculator, weather, etc.)
-- Conversation memory
-- Stream responses token-by-token
-- Web search integration
-- GUI using Streamlit or Gradio
-- Voice input and output
+## 📊 Weather History
 
-## 📚 What I Learned
+Fetches weather data for the previous 7 days.
 
-- Working with LangChain Agents
-- Integrating OpenRouter with LangChain
-- Managing API keys using environment variables
-- Building conversational AI applications in Python
-- Handling streaming responses from LLMs
+Features:
 
-## 📄 License
+- Saves data as CSV
+- Generates a temperature graph
+- Displays weather table
 
-This project is open source and available under the MIT License.
+Generated files:
+
+```
+data/Jaipur_weather.csv
+weather_chart.png
+```
+
+---
+
+## 💱 Currency Converter
+
+Convert between currencies using the Frankfurter API.
+
+Example:
+
+```
+Convert 100 USD to INR
+```
+
+---
+
+## 🌍 Translator
+
+Translate text between languages using the MyMemory Translation API.
+
+Example:
+
+```
+Translate "Good Morning" from English to French
+```
+
+---
+
+## ➕
+
+Performs simple arithmetic operations.
+
+Example:
+
+```
+Add 25 and 17
+```
+
+---
+
+# 📸 Example Conversation
+
+```
+You: Convert 100 USD to INR
+
+Assistant:
+100 USD = 8763.42 INR
+```
+
+```
+You: Translate "How are you?" from English to Hindi
+
+Assistant:
+आप कैसे हैं?
+```
+
+```
+You: What's the weather at latitude 26.91 and longitude 75.78?
+
+Assistant:
+Current Weather
+
+Temperature: 34°C
+Humidity: 61%
+Wind Speed: 12 km/h
+```
+
+---
+
+# 📦 APIs Used
+
+- OpenRouter
+- Open-Meteo
+- Frankfurter Currency API
+- MyMemory Translation API
+
+---
+
+# 🚀 Future Improvements
+
+- Web Search
+- PDF Reader
+- CSV Analyzer
+- OCR (Image to Text)
+- News API
+- GitHub Search
+- ArXiv Research Search
+- Memory Support
+- Voice Input & Output
+- Streamlit / React Web Interface
+- Chat History
+- File Upload Support
+
+---
+
+# 📜 License
+
+This project is open-source and available under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+Built with ❤️ using Python, LangChain, and OpenRouter.
