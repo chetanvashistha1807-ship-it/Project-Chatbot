@@ -1,32 +1,39 @@
-# 🤖 AI Chatbot with LangChain & OpenRouter
+# 🤖 AI Assistant
 
-An AI-powered command-line chatbot built using **Python**, **LangChain**, and **OpenRouter**. The chatbot can answer general questions using an LLM while intelligently invoking external tools for weather, currency conversion, translation, calculations, and historical weather analysis.
+An AI-powered chatbot built using **LangChain**, **OpenRouter**, and **Streamlit** that can intelligently use tools to answer user queries instead of relying only on the language model.
 
-## ✨ Features
-
-- 🧠 Conversational AI using OpenRouter
-- 🌤️ Current weather lookup
-- 📊 7-day weather history with graph generation
-- 💱 Currency conversion
-- 🌍 Language translation
-- ➕ Calculator tool
-- 📁 Automatically saves weather data as CSV
-- 📈 Generates weather history charts
+Built by **Chetan Vashistha**
 
 ---
 
-## 🛠️ Technologies Used
+## ✨ Features
+
+- 💬 Conversational AI Chatbot
+- 🧮 Calculator Tool
+- 🌤 Current Weather Information
+- 📈 7-Day Weather History
+- 📊 Automatic Weather Graph Generation
+- 📄 Export Weather Data as CSV
+- 💱 Currency Converter
+- 🌍 Language Translator
+- 📚 Wikipedia Search
+- 🖥️ Clean Streamlit Web Interface
+
+---
+
+## 🛠️ Tech Stack
 
 - Python
 - LangChain
-- OpenRouter API
-- Open-Meteo API
-- Frankfurter Currency API
-- MyMemory Translation API
+- OpenRouter
+- Streamlit
 - Pandas
 - Matplotlib
 - Requests
-- python-dotenv
+- Wikipedia API
+- Open-Meteo API
+- Frankfurter Currency API
+- MyMemory Translation API
 
 ---
 
@@ -35,11 +42,11 @@ An AI-powered command-line chatbot built using **Python**, **LangChain**, and **
 ```
 Project-Chatbot/
 │
+├── app.py                 # Streamlit UI
+├── main.py                # Chatbot logic & tools
 ├── data/
 │   └── Jaipur_weather.csv
-│
 ├── weather_chart.png
-├── main.py
 ├── .env
 ├── requirements.txt
 └── README.md
@@ -47,38 +54,47 @@ Project-Chatbot/
 
 ---
 
-## ⚙️ Installation
+## 🚀 Installation
 
-### 1. Clone the repository
+Clone the repository
 
 ```bash
 git clone https://github.com/your-username/Project-Chatbot.git
+```
+
+Move into the project
+
+```bash
 cd Project-Chatbot
 ```
 
-### 2. Create a virtual environment
-
-**Windows**
+Create a virtual environment
 
 ```bash
 python -m venv .venv
+```
+
+Activate it
+
+### Windows
+
+```bash
 .venv\Scripts\activate
 ```
 
-**Linux / macOS**
+### Linux / macOS
 
 ```bash
-python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-### 3. Install dependencies
+Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Create a `.env` file
+Create a `.env` file
 
 ```env
 OPENROUTER_API_KEY=your_api_key_here
@@ -86,150 +102,72 @@ OPENROUTER_API_KEY=your_api_key_here
 
 ---
 
-## ▶️ Run the chatbot
+## ▶️ Run the Application
+
+Launch the Streamlit interface
 
 ```bash
-python main.py
+streamlit run app.py
 ```
 
 ---
 
-# 🧰 Available Tools
-
-## 🌤️ Current Weather
-
-Get the current weather using latitude and longitude.
-
-Example:
+## 💡 Example Prompts
 
 ```
-What's the weather at latitude 26.91 and longitude 75.78?
-```
+What's the weather in Jaipur?
 
-Returns:
+Convert 250 USD to INR.
 
-- Temperature
-- Humidity
-- Wind Speed
+Translate "Good Morning" to French.
 
----
+Show me the weather history for Jaipur.
 
-## 📊 Weather History
+Calculate 345 + 678.
 
-Fetches weather data for the previous 7 days.
-
-Features:
-
-- Saves data as CSV
-- Generates a temperature graph
-- Displays weather table
-
-Generated files:
-
-```
-data/Jaipur_weather.csv
-weather_chart.png
+Tell me about Artificial Intelligence from Wikipedia.
 ```
 
 ---
 
-## 💱 Currency Converter
+## 📷 Weather History
 
-Convert between currencies using the Frankfurter API.
+The weather history tool:
 
-Example:
-
-```
-Convert 100 USD to INR
-```
-
----
-
-## 🌍 Translator
-
-Translate text between languages using the MyMemory Translation API.
-
-Example:
-
-```
-Translate "Good Morning" from English to French
-```
+- Fetches the previous 7 days' weather
+- Creates a temperature graph
+- Saves the data as CSV
+- Displays the chart directly inside the Streamlit interface
 
 ---
 
-## ➕
-
-Performs simple arithmetic operations.
-
-Example:
-
-```
-Add 25 and 17
-```
-
----
-
-# 📸 Example Conversation
-
-```
-You: Convert 100 USD to INR
-
-Assistant:
-100 USD = 8763.42 INR
-```
-
-```
-You: Translate "How are you?" from English to Hindi
-
-Assistant:
-आप कैसे हैं?
-```
-
-```
-You: What's the weather at latitude 26.91 and longitude 75.78?
-
-Assistant:
-Current Weather
-
-Temperature: 34°C
-Humidity: 61%
-Wind Speed: 12 km/h
-```
-
----
-
-# 📦 APIs Used
+## 🔧 APIs Used
 
 - OpenRouter
 - Open-Meteo
-- Frankfurter Currency API
-- MyMemory Translation API
+- Frankfurter Exchange Rates
+- MyMemory Translation
+- Wikipedia
 
 ---
 
-# 🚀 Future Improvements
+## Future Improvements
 
-- Web Search
-- PDF Reader
-- CSV Analyzer
-- OCR (Image to Text)
-- News API
-- GitHub Search
-- ArXiv Research Search
-- Memory Support
-- Voice Input & Output
-- Streamlit / React Web Interface
-- Chat History
-- File Upload Support
+- 🔍 Web Search Tool
+- 🧠 Conversation Memory
+- 📍 Location Detection
+- 🎤 Voice Input
+- 🔊 Text-to-Speech
+- 📂 File Upload & Analysis
+- 📄 PDF Question Answering
+- 🖼️ Image Understanding
+- 🌐 Multi-Agent Support
+- ☁️ Cloud Deployment
 
 ---
 
-# 📜 License
+## Author
 
-This project is open-source and available under the MIT License.
+**Chetan Vashistha**
 
----
-
-## 👨‍💻 Author
-
-Built with ❤️ using Python, LangChain, and OpenRouter.
+If you found this project interesting, feel free to star the repository.
