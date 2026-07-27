@@ -207,8 +207,7 @@ def calculator(a: float, b: float) -> str:
     
     return f"The sum of {a} and {b} is {a + b}"
 
-
-def main():
+def create_chatbot():
     model = ChatOpenAI(
         model="nvidia/nemotron-3-ultra-550b-a55b:free",
         temperature=0,
@@ -216,9 +215,18 @@ def main():
         api_key=os.getenv("OPENROUTER_API_KEY"),
     )
 
-    tools = [calculator, current_weather, weather_history, translator, currency_converter, ]
+    tools = [
+        calculator,
+        current_weather,
+        weather_history,
+        translator,
+        currency_converter,
+    ]
 
-    agent_executor = create_agent(model, tools)
+    return create_agent(model, tools)
+
+def main():
+    agent_executor = create_chatbot()
 
     print("Welcome! I'm your AI assistant. Type 'quit' to exit")
     print("You can ask me to perform calculations or chat with me")
